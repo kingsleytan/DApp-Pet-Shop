@@ -24,17 +24,23 @@ App = {
   },
 
   initWeb3: function() {
-    /*
-     * Replace me...
-     */
+    // Is there is an injected web3 instance?
+    if (typeof web3 !== 'undefined') {
+      App.web3Provider = web3.currentProvider;
+      web3 = new Web3(web3.currentProvider);
+    } else {
+      // If no injected web3 instance is detected, fallback to the TestRPC.
+      App.web3Provider = new web3.providers.HttpProvider('http://localhost:8545');
+      web3 = new Web3(App.web3Provider);
+    }
 
     return App.initContract();
   },
 
   initContract: function() {
     /*
-     * Replace me...
-     */
+    * Replace me...
+    */
 
     return App.bindEvents();
   },
@@ -49,14 +55,14 @@ App = {
     var petId = parseInt($(event.target).data('id'));
 
     /*
-     * Replace me...
-     */
+    * Replace me...
+    */
   },
 
   markAdopted: function(adopters, account) {
     /*
-     * Replace me...
-     */
+    * Replace me...
+    */
   }
 
 };
